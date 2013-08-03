@@ -127,5 +127,5 @@ for subprj in $*; do
 
 done
 
-# Go back to original directory
+# Go back to the original directory
 cd $CURRENT_DIR

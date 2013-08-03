@@ -13,6 +13,7 @@ Script Information & Usage
 
 Additional details of the individual scripts can be found here.
 
+
 ### cq-deploy.sh
 
 The deploy script performs imports to CQ via either VLT or Maven. A bundle/mvn project can be identified via a ```src/main/java``` directory, while node/vlt projects can be identified via ```src/main/content```.
@@ -55,6 +56,40 @@ cq-deploy.sh example-env clean-bundles clean-clientlibs subproj-1 subproj-2 …
 ```
 
 
+### cq-import-nodes.sh
+
+The import nodes script can be used as a shortcut to import all node projects into the repository.
+
+Under the hood this script just calls the deploy script: passing any optional environment arguments, specifying *clean-clientlibs*, and including all of the subprojects containing CQ nodes to be deployed.
+
+For the example script here, that's the *config* and *view* projects based on the CQ Blueprints Archetype.
+
+#### Usage
+
+This script is called directly, using an optional environment argument to override the defaults:
+
+```
+cq-import-nodes.sh example-env
+```
+
+
+### cq-import-bundles.sh
+
+The import bundles script can be used as a shortcut to import all bundle projects into the repository.
+
+Under the hood this script just calls the deploy script: passing any optional environment arguments, specifying *clean-bundles*, and including all of the subprojects containing OSGI bundles to be deployed.
+
+For the example script here, that's the *services* and *taglib* projects based on the CQ Blueprints Archetype.
+
+#### Usage
+
+This script is called directly, using an optional environment argument to override the defaults:
+
+```
+cq-import-nodes.sh example-env
+```
+
+
 Additional Information
 ----------------------
 
@@ -67,6 +102,7 @@ Scripts are assumed to be deployed at the root of the project directory, for exa
 By adding this directory to the ```$PATH```, the scripts can be run from anywhere; they only need to be located relative to the target projects. See the individual scripts for additional information.
 
 Assumes CQ Project Structures based off of the [CQ Blueprints Maven Archetype](http://www.cqblueprints.com/xwiki/bin/view/Blue+Prints/The+CQ+Project+Maven+Archetype)
+
 
 ### Maven Builds
 
@@ -82,6 +118,7 @@ The scripts use the following cmd to deploy OSGI bundle projects:
 ```
 mvn clean install -P cq -P cqblueprints -Pauto-deploy -Dcq.host=$cqhost -Dcq.port=$cqport -Dcq.user=$cquser -Dcq.password=$cqpassword
 ```
+
 
 ### VLT Builds
 
@@ -100,6 +137,7 @@ vlt --credentials $cquser:$cqpassword import -v http://$cqhost:$cqport/crx {node
 ```
 
 Further info and configuration instructions can be found at the [Adobe VLT Page](http://dev.day.com/docs/en/cq/current/core/how_to/how_to_use_the_vlttool.html).
+
 
 ### Environment Specific Deploys
 

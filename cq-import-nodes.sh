@@ -33,5 +33,5 @@ echo '--------------------------------------------------------------------------
 $PRJ_HOME/scripts/cq-deploy.sh $1 clean-clientlibs config view || exit
 
 
-# Go back to original directory
+# Go back to the original directory
 cd $CURRENT_DIR
