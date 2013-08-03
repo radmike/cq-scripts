@@ -4,19 +4,22 @@
 #
 
 
+# Grab the current directory where the script was executed
 CURRENT_DIR="$( pwd )"
+
+# Figure out the actual project home
 PRJ_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 
 echo '-------------------------------------------------------------------------------'
-echo 'pnc-foundation import nodes into cq'
+echo 'import all node projects into cq'
 echo '-------------------------------------------------------------------------------'
 echo ''
 echo 'imports non-bundled directories via:'
 echo '    vlt import -v http://localhost:4502/crx '
-echo '        '$PRJ_HOME'/pnc-foundation-XXXX/src/main/content/jcr_root/YYYYY /'
+echo '        '$PRJ_HOME'/{project-name}-{subproject-name}/src/main/content/jcr_root/YYYYY /'
 echo ''
-echo 'pnc-foundation home: '
+echo 'project home: '
 echo '  ' $PRJ_HOME
 echo '-------------------------------------------------------------------------------'
 echo
@@ -27,8 +30,8 @@ echo 'vault import starting...'
 echo '-------------------------------------------------------------------------------'
 
 
-$PRJ_HOME/scripts/pf-deploy.sh $1 config view || exit
+$PRJ_HOME/scripts/cq-deploy.sh $1 clean-clientlibs config view || exit
 
 
-# back to original directory
+# Go back to original directory
 cd $CURRENT_DIR
