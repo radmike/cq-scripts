@@ -19,8 +19,10 @@ The deploy script performs imports to CQ via either VLT or Maven. A bundle/mvn p
 
 The script should be edited to provide a default project name:
 
-```# Environment Defaults
-project=add-project-name-here```
+```
+# Environment Defaults
+project=add-project-name-here
+```
 
 As detailed below, environment-specific configuration can be used to override the script's default CQ server location and credentials. The default project can also be set as a value in the ```{environment}.properties``` file.
 
@@ -28,21 +30,29 @@ As detailed below, environment-specific configuration can be used to override th
 
 Assuming the main project consists of a number of node & bundle projects named with the ```{project-name}-{sub-project-name}``` convention, multiple projects can be deployed using the following syntax:
 
-```cq-deploy.sh subproj-1 subproj-2 …```
+```
+cq-deploy.sh subproj-1 subproj-2 …
+```
 
 In order to use an environment-specific property file, the first argument should be the name of the ```example-env.properties``` file:
 
-```cq-deploy.sh example-env subproj-1 subproj-2 …```
+```
+cq-deploy.sh example-env subproj-1 subproj-2 …
+```
 
 By default project OSGI bundles are deployed into CQ at the ```/apps/{project}/install``` location in the repository. If not cleaned up during full builds, older versions of project OSGI bundles can hang around and become activated.
 
 When running a full deploy, the *clean-bundles* argument can be used to cleanup the install location. As shown here, this argument should come after any environment overrides, but before any additional sub-projects are deployed.
 
-```cq-deploy.sh example-env clean-bundles subproj-1 subproj-2 …```
+```
+cq-deploy.sh example-env clean-bundles subproj-1 subproj-2 …
+```
 
 Finally, CQ generated clientlibs for the project (located under ```var/clientlibs/etc/designs/{project}/clientlibs```) can be cleaned up via adding *clean-clientlibs* to the command:
 
-```cq-deploy.sh example-env clean-bundles clean-clientlibs subproj-1 subproj-2 …```
+```
+cq-deploy.sh example-env clean-bundles clean-clientlibs subproj-1 subproj-2 …
+```
 
 
 Additional Information
@@ -50,7 +60,9 @@ Additional Information
 
 Scripts are assumed to be deployed at the root of the project directory, for example:
 
-```{project-dir}/scripts```
+```
+{project-dir}/scripts
+```
 
 By adding this directory to the ```$PATH```, the scripts can be run from anywhere; they only need to be located relative to the target projects. See the individual scripts for additional information.
 
@@ -67,7 +79,9 @@ Maven version should be at least [Maven 3](http://maven.apache.org/)
 
 The scripts use the following cmd to deploy OSGI bundle projects:
 
-```mvn clean install -P cq -P cqblueprints -Pauto-deploy -Dcq.host=$cqhost -Dcq.port=$cqport -Dcq.user=$cquser -Dcq.password=$cqpassword```
+```
+mvn clean install -P cq -P cqblueprints -Pauto-deploy -Dcq.host=$cqhost -Dcq.port=$cqport -Dcq.user=$cquser -Dcq.password=$cqpassword
+```
 
 ### VLT Builds
 
@@ -75,11 +89,15 @@ The scripts are also designed to work with Maven projects containing CQ Nodes (n
 
 VLT should be included within the CQ Quickstart, located at:
 
-```crx-quickstart/opt/filevault```
+```
+crx-quickstart/opt/filevault
+```
 
 Once VLT is installed and added to the ```$PATH```, the scripts will use the following cmd to deploy CQ node projects:
 
-```vlt --credentials $cquser:$cqpassword import -v http://$cqhost:$cqport/crx {node-project}/src/main/content /```
+```
+vlt --credentials $cquser:$cqpassword import -v http://$cqhost:$cqport/crx {node-project}/src/main/content /
+```
 
 Further info and configuration instructions can be found at the [Adobe VLT Page](http://dev.day.com/docs/en/cq/current/core/how_to/how_to_use_the_vlttool.html).
 
@@ -89,9 +107,11 @@ The scripts are designed to be run with environment-specific properties files wh
 
 Property values can be placed in an ```{environment-name}.properties``` file containing values for the CQ server and credentials:
 
-```cqhost=localhost
+```
+cqhost=localhost
 cqport=4502
 cquser=admin
-cqpassword=admin```
+cqpassword=admin
+```
 
 Local and CI author/publish examples are included in this project.
