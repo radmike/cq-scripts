@@ -17,9 +17,10 @@ Additional details of the individual scripts can be found here.
 
 The deploy script performs imports to CQ via either VLT or Maven. A bundle/mvn project can be identified via a ```src/main/java``` directory, while node/vlt projects can be identified via ```src/main/content```.
 
-The script should be edited to provide a default project name under the *Environment Defaults* section:
+The script should be edited to provide a default project name:
 
-```project=add-project-name-here```
+```# Environment Defaults
+project=add-project-name-here```
 
 As detailed below, environment-specific configuration can be used to override the script's default CQ server location and credentials. The default project can also be set as a value in the ```{environment}.properties``` file.
 
