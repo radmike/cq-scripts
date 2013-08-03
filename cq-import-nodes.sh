@@ -1,8 +1,7 @@
 #!/bin/bash
 #
-# This script imports all pnc-foundation node projects into CQ
+# This script imports all node projects into CQ
 #
-## import -v|-s <uri> <local-path> <jcr-path>
 
 
 CURRENT_DIR="$( pwd )"
