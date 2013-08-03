@@ -58,9 +58,9 @@ cq-deploy.sh example-env clean-bundles clean-clientlibs subproj-1 subproj-2 …
 
 ### cq-import-nodes.sh
 
-The import nodes script can be used as a shortcut to import all node projects into the repository.
+The import nodes script imports all node projects into the repository.
 
-Under the hood this script just calls the deploy script: passing any optional environment arguments, specifying *clean-clientlibs*, and including all of the subprojects containing CQ nodes to be deployed.
+Under the hood this script just calls the *deploy* script: passing any optional environment arguments, specifying *clean-clientlibs*, and including all of the subprojects containing CQ nodes to be deployed.
 
 For the example script here, that's the *config* and *view* projects based on the CQ Blueprints Archetype.
 
@@ -75,9 +75,9 @@ cq-import-nodes.sh example-env
 
 ### cq-import-bundles.sh
 
-The import bundles script can be used as a shortcut to import all bundle projects into the repository.
+The import bundles script imports all bundle projects into the repository.
 
-Under the hood this script just calls the deploy script: passing any optional environment arguments, specifying *clean-bundles*, and including all of the subprojects containing OSGI bundles to be deployed.
+Under the hood this script just calls the *deploy* script: passing any optional environment arguments, specifying *clean-bundles*, and including all of the subprojects containing OSGI bundles to be deployed.
 
 For the example script here, that's the *services* and *taglib* projects based on the CQ Blueprints Archetype.
 
@@ -86,7 +86,22 @@ For the example script here, that's the *services* and *taglib* projects based o
 This script is called directly, using an optional environment argument to override the defaults:
 
 ```
-cq-import-nodes.sh example-env
+cq-import-bundles.sh example-env
+```
+
+
+### cq-import-all.sh
+
+The import all script imports all projects into the repository, including both node projects as well as bundle projects.
+
+Under the hood this script just calls the two *import-nodes* and *import-bundles* scripts.
+
+#### Usage
+
+This script is called directly, using an optional environment argument to override the defaults:
+
+```
+cq-import-all.sh example-env
 ```
 
 
