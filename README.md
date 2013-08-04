@@ -56,6 +56,22 @@ cq-deploy.sh example-env clean-bundles clean-clientlibs subproj-1 subproj-2 …
 ```
 
 
+### cq-init.sh
+
+The init script serves two purposes:
+
+* First, the *config* project is imported into CQ, allowing for default runmode configuration to be quickly imported into CQ.
+* Secondly, the entire project will be built. This ensures that the parent pom, and any dependent sub-projects (e.g. taglib may depend on services) has been built and is available in the local maven repository
+
+#### Usage
+
+This script is called directly, using an optional environment argument to override the defaults:
+
+```
+cq-init.sh example-env
+```
+
+
 ### cq-import-nodes.sh
 
 The import nodes script imports all node projects into the repository.
