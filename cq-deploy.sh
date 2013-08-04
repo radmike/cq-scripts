@@ -18,6 +18,7 @@ cqport=4502
 cquser='admin'
 cqpassword='admin'
 
+
 # Function to read environment properties
 function read_props {
   echo
@@ -85,7 +86,8 @@ function delete_nodes {
   echo
 }
 
-# Script execution
+
+# Start script execution
 
 echo
 echo '>>-----------------------------------------------------------------------------'
@@ -126,6 +128,9 @@ for subprj in $*; do
   fi
 
 done
+
+# End script execution
+
 
 # Go back to the original directory
 cd $CURRENT_DIR

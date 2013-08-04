@@ -11,6 +11,8 @@ CURRENT_DIR="$( pwd )"
 PRJ_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 
+# Start script execution
+
 echo '-------------------------------------------------------------------------------'
 echo 'import all node projects into cq'
 echo '-------------------------------------------------------------------------------'
@@ -31,6 +33,8 @@ echo '--------------------------------------------------------------------------
 
 
 $PRJ_HOME/scripts/cq-deploy.sh $1 clean-clientlibs config view || exit
+
+# End script execution
 
 
 # Go back to the original directory

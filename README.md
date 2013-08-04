@@ -105,6 +105,30 @@ cq-import-all.sh example-env
 ```
 
 
+### cq-mvn-refresh.sh
+
+The mvn refresh script builds eclipse project/classpath files for all projects, such that the projects can easliy be imported into eclipse.
+
+The script should be edited to provide a default project name:
+
+```
+# Environment Defaults
+project=add-project-name-here
+```
+
+First, a full mvn build is run at the top-level of the project, to ensure that the parent pom is rebuilt, and all sub-projects will compile.
+
+Next, each subproject is built using the maven eclipse plugin, generating approriate eclipse ```.project``` and ```.classpath``` files, enabling all of the sub-projects to be imported into eclipse.
+
+#### Usage
+
+This script is called directly:
+
+```
+cq-mvn-refresh.sh
+```
+
+
 Additional Information
 ----------------------
 
