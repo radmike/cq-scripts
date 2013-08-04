@@ -14,10 +14,10 @@ PRJ_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 # Start script execution
 
 # Import all nodes
-$PRJ_HOME/scripts/pf-import-nodes.sh $1 || exit
+$PRJ_HOME/scripts/cq-import-nodes.sh $1 || exit
 
 # Import all bundles
-$PRJ_HOME/scripts/pf-import-bundles.sh $1 || exit
+$PRJ_HOME/scripts/cq-import-bundles.sh $1 || exit
 
 # End script execution
 
