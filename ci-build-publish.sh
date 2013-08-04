@@ -1,23 +1,31 @@
 #!/bin/bash
 #
-# This script imports all pnc-foundation bundle projects into CQ publish
+# This script allows the CI builder to automatically build all approriate projects to the publish instance
 #
 
 
+# Grab the current directory where the script was executed
 CURRENT_DIR="$( pwd )"
+
+# Figure out the actual project home
 PRJ_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 
+# Start script execution
+
 echo '-------------------------------------------------------------------------------'
-echo 'pnc-foundation deploy to authoring'
+echo 'CI deploy to publish'
 echo '-------------------------------------------------------------------------------'
 echo ''
-echo 'pnc-foundation home: '
+echo 'project home: '
 echo '  ' $PRJ_HOME
 echo '-------------------------------------------------------------------------------'
 echo
 
-$PRJ_HOME/scripts/pf-deploy.sh authoring config dependencies view services security workflows taglib || exit
+$PRJ_HOME/scripts/cq-import-all.sh ci-publish || exit
 
-# back to original directory
+# End script execution
+
+
+# Go back to the original directory
 cd $CURRENT_DIR

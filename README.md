@@ -145,7 +145,7 @@ cq-mvn-refresh.sh
 ```
 
 
-### cq-ci-build-{env}.sh
+### ci-build-{env}.sh
 
 The CI builder scripts are used to easily integrate and control which subprojects get built out to the CI server. Typically a local CQ instance will use the default admin passwords, but availability of alternate ```environment.properties``` files allows for easy management of CQ deploys.
 
@@ -154,7 +154,7 @@ The CI builder scripts are used to easily integrate and control which subproject
 These scripts are called directly, usually by the CI builder
 
 ```
-cq-ci-build-{env}.sh
+ci-build-{env}.sh
 ```
 
 
