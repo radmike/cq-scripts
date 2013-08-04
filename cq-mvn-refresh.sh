@@ -65,6 +65,7 @@ mvn clean install -P cq -P cqblueprints || exit $ERROR_CODE
 
 mvn-init $project-config
 mvn-init $project-view
+mvn-init $project-content
 mvn-init $project-services
 mvn-init $project-taglib
 

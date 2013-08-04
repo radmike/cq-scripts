@@ -78,7 +78,7 @@ The import nodes script imports all node projects into the repository.
 
 Under the hood this script just calls the *deploy* script: passing any optional environment arguments, specifying *clean-clientlibs*, and including all of the subprojects containing CQ nodes to be deployed.
 
-For the example script here, that's the *config* and *view* projects based on the CQ Blueprints Archetype.
+For the example script here, that's the *config*, *view*, and *content* projects based on the CQ Blueprints Archetype.
 
 #### Usage
 
@@ -143,6 +143,42 @@ This script is called directly:
 ```
 cq-mvn-refresh.sh
 ```
+
+
+### cq-ci-build-{env}.sh
+
+The CI builder scripts are used to easily integrate and control which subprojects get built out to the CI server. Typically a local CQ instance will use the default admin passwords, but availability of alternate ```environment.properties``` files allows for easy management of CQ deploys.
+
+#### Usage
+
+These scripts are called directly, usually by the CI builder
+
+```
+cq-ci-build-{env}.sh
+```
+
+
+### Included ```environment.properties```
+
+The following environment-override examples are included:
+
+* local-author.properties – admin/admin, localhost:4502
+* local-publish.properties – admin/admin, localhost:4503
+* local-author.properties – admin/admin, localhost:4502
+* local-author.properties – admin/admin, localhost:4502
+
+General Usage
+-------------
+
+These scripts are designed to create a more efficient local or CI workflow for importing source-code changes to CQ projects into a CQ repository.
+
+The first step in putting these scripts into practice is updating the *deploy* and *mvn-refresh* scripts to add the specific project name.
+
+In general, the day-to-day usage is to simply use *import-all* to ensure all source code is properly imported into eclipse. The *deploy* script can then be used to push changes at an individual project level.
+
+Finally, when pom versions update, or when initially installing a project into CQ, the *init* script can be used to ensure correct configuration and project dependencies are in place.
+
+The provided CI scripts give examples for using alernate environment configurations to control what gets imported into a CI repository.
 
 
 Additional Information

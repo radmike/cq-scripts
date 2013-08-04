@@ -32,7 +32,7 @@ echo 'vault import starting...'
 echo '-------------------------------------------------------------------------------'
 
 
-$PRJ_HOME/scripts/cq-deploy.sh $1 clean-clientlibs config view || exit
+$PRJ_HOME/scripts/cq-deploy.sh $1 clean-clientlibs config view content || exit
 
 # End script execution
 
