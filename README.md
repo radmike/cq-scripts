@@ -158,28 +158,53 @@ cq-ci-build-{env}.sh
 ```
 
 
-### Included ```environment.properties```
+### Included Environment Examples
 
 The following environment-override examples are included:
 
-* local-author.properties – admin/admin, localhost:4502
-* local-publish.properties – admin/admin, localhost:4503
-* local-author.properties – admin/admin, localhost:4502
-* local-author.properties – admin/admin, localhost:4502
+* *local-author.properties* – admin/admin, localhost:4502
+* *local-publish.properties* – admin/admin, localhost:4503
+* *ci-author-init.properties* – admin/admin, localhost:4502
+* *ci-publish-init.properties* – admin/admin, localhost:4503
+* *ci-author.properties* – admin/ci-password-here, localhost:4502
+* *ci-publish.properties* – admin/ci-password-here, localhost:4503
+
+For details on the -init see the next section.
 
 General Usage
 -------------
 
 These scripts are designed to create a more efficient local or CI workflow for importing source-code changes to CQ projects into a CQ repository.
 
+### Setup
+
 The first step in putting these scripts into practice is updating the *deploy* and *mvn-refresh* scripts to add the specific project name.
+
+Secondly, adding a project's *scripts* directory to the $PATH allows for execution from any location; developers would not need to change into the scripts directory to execute.
+
+To this end, it may also be useful to change the prefixes of the scripts to something unique, such that multiple projects can have thier scripts on the same $PATH.
+
+### Usage
 
 In general, the day-to-day usage is to simply use *import-all* to ensure all source code is properly imported into eclipse. The *deploy* script can then be used to push changes at an individual project level.
 
 Finally, when pom versions update, or when initially installing a project into CQ, the *init* script can be used to ensure correct configuration and project dependencies are in place.
 
+### CI Integration
+
 The provided CI scripts give examples for using alernate environment configurations to control what gets imported into a CI repository.
 
+Approriate CI passwords should be updated, and CI builders can easily call the included example scripts to deploy the project.
+
+Typically, a *{project}-init* builder can be added to run the full init script on-demand. This builder will only need to be run when spinning up a new project, or in the event that any project poms get updated (whether just version-number bumps or dependency changes)
+
+Scheduled or source-code-change triggered *{project}-full-scheduled* builders can be added to run the *import-all* with the approriate environment overrides.
+
+#### CI Initialization
+
+Finally, in the event that the CI server needs to be rebuilt from scratch, it may be useful to init a fresh repository with default configuration. The *init* script can be used with the *ci-{env}-init.properties* to deploy initial configuration into a CQ repository, using the default admin password.
+
+For example, out of the box if a CI server is accessed through a proxy, a fresh CQ instance may not have proper Allowed Hosts added to the Referrer Filter. This may make it difficult to initially login (POST dissallowed for unknown hosts). Once default Allowed Hosts are imported into CQ, and the admin password can be changed, the CI builders will use the normal scripts and builders described above.
 
 Additional Information
 ----------------------
