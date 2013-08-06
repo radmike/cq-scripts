@@ -86,6 +86,23 @@ function delete_nodes {
   echo
 }
 
+# Function to delete nodes in CQ
+function create_folder {
+  echo
+  echo '>>-----------------------------------------------------------------------------'
+  echo '===== creating folder at: '$1
+  echo '>>-----------------------------------------------------------------------------'
+  echo
+
+  curl --user $cquser:$cqpassword -F"jcr:primaryType=nt:folder" http://$cqhost:$cqport/$1
+
+  echo
+  echo '>>-----------------------------------------------------------------------------'
+  echo '===== creating folder at '$1' complete'
+  echo '>>-----------------------------------------------------------------------------'
+  echo
+}
+
 
 # Start script execution
 
@@ -101,6 +118,7 @@ for subprj in $*; do
   # Clean up project install directory (clean old versions of OSGI bundles)
   if [ $subprj = 'clean-bundles' ]; then
     delete_nodes apps/$project/install
+    create_folder apps/$project/install
 
   # Clean up generated clientlibs from the project
   elif [ $subprj = 'clean-clientlibs' ]; then
